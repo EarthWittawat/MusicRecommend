@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-import algorithm # all data processing and clustering algorithms will be in this file
+import algorithm
 import uvicorn
 
-## allow CORS
 origins = ['*']
 app = FastAPI()
 app.add_middleware(
@@ -17,7 +16,7 @@ app.add_middleware(
 @app.get("/")
 async def home():
     msg = {
-        'message': 'Music Recommendation',
+        'message': 'Music Recommendation KMUTT',
         'api_endpoints': ['music']
     }
     result = JSONResponse(content=msg)
@@ -30,3 +29,5 @@ async def cluster(lyrics: str):
     }
     result = JSONResponse(content=msg)
     return result
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
